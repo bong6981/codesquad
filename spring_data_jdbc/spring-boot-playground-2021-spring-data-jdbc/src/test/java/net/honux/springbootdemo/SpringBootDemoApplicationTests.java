@@ -58,7 +58,7 @@ class SpringBootDemoApplicationTests {
 	@Test
 	@DisplayName("새로운 유저 생성이 되는지 확인")
 	void create() {
-		User user = new User("test@zz.com", "hello");
+		User user = new User("test@zz.com", "hello", new Github("zzz", "https://qqqqqq/why_laugh"));
 //		user.setGithub(new Github("zzz", "https://qqqqqq/why_laugh"));
 		user = userRepository.save(user);
 		assertThat(user.getId()).isGreaterThanOrEqualTo(2);
@@ -69,7 +69,7 @@ class SpringBootDemoApplicationTests {
 	@DisplayName("유저 정보 업데이트")
 	void update() {
 		String name = "Jane";
-		User user = new User("j@jj.com", "John");
+		User user = new User("j@jj.com", "John", new Github("qqqqq", "http://qqqqqq"));
 //		user.setGithub(new Github("qqqqq", "http://qqqqqq"));
 		user = userRepository.save(user);
 		user.setName(name);
@@ -91,5 +91,12 @@ class SpringBootDemoApplicationTests {
 		userRepository.deleteById(id2);
 		userRepository.deleteById(id3);
 		assertThat(userRepository.count()).isEqualTo(0);
+	}
+
+	@Test
+	@DisplayName("embeded test option")
+	void embeddedTest() {
+		User user2 = userRepository.findById(3L).get();
+		logger.info("Create new user {}", user2);
 	}
 }

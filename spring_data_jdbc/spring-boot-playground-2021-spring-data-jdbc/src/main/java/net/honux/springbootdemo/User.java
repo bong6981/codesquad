@@ -12,10 +12,13 @@ public class User {
     private Long id;
     private String email;
     private String name;
+    @Embedded.Empty
+    private Github github;
 
-    public User(String email, String name) {
+    public User(String email, String name, Github github) {
         this.email = email;
         this.name = name;
+        this.github = github;
     }
 
     public Long getId() {
@@ -32,12 +35,17 @@ public class User {
         this.name = name;
     }
 
+    public void setGithub(Github github) {
+        this.github = github;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
+                ", github=" + github +
                 '}';
     }
 }
