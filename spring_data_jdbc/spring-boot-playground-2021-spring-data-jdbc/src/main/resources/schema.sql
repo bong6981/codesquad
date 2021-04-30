@@ -8,3 +8,12 @@ CREATE TABLE user
     nickname varchar(64),
     git_url varchar(64)
 );
+
+DROP TABLE IF EXISTS food;
+
+CREATE TABLE foods
+(
+    name VARCHAR(64),
+    cal  int
+    `user` int references user(id)
+);
