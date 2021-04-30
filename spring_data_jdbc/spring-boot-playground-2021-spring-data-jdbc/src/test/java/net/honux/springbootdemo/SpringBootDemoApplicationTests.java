@@ -37,14 +37,17 @@ class SpringBootDemoApplicationTests {
 		User user = userRepository.findById(id).get();
 		assertThat(user).isNotNull();
 		logger.info("User ID {}: {}", id, user);
-
+		Github gh = user.getGithub();
+		assertThat(gh).isNotNull();
+		Set<Food> foods = user.getFoods();
+		assertThat(foods.size()).isPositive();
 		//지금데이터에 USER 2명만 넣어줌
-		Long id2 = 3L;
+		Long id2 = 999L;
 		assertThat(userRepository.findById(id2).isPresent()).isFalse();
 
 		Iterable<User> users = userRepository.findAll();
-		assertThat(((Collection) users).size()).isEqualTo(2);
-		assertThat(userRepository.count()).isEqualTo(2);
+		assertThat(((Collection) users).size()).isEqualTo(3);
+		assertThat(userRepository.count()).isEqualTo(3);
 	}
 
 	@Test
@@ -106,5 +109,19 @@ class SpringBootDemoApplicationTests {
 	void embeddedTest() {
 		User user2 = userRepository.findById(3L).get();
 		logger.info("Create new user {}", user2);
+	}
+
+	@Test
+	@DisplayName("food를 추가한다")
+	void addFoodTest() {
+		User user = userRepository.findById(3L).get();
+		logger.info("user foods {}", user.getFoods().toString());
+		user.addFood(new Food("snack", 10000), new Food("초콜렛", 5000));
+		userRepository.save(user);
+		Set<Food> foods = userRepository.findById(3L).get().getFoods();
+		assertThat(foods.size()).isGreaterThanOrEqualTo(2);
+		for(Food f : foods) {
+			System.out.println(f);
+		}
 	}
 }

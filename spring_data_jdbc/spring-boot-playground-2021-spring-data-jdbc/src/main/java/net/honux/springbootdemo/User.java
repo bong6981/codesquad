@@ -23,8 +23,10 @@ public class User {
         this.github = github;
     }
 
-    public void addFood(Food food) {
-        foods.add(food);
+    public void addFood(Food... foods) {
+        for(Food food : foods) {
+            this.foods.add(food);
+        }
     }
 
     public Set<Food> getFoods() {
@@ -47,6 +49,10 @@ public class User {
 
     public void setGithub(Github github) {
         this.github = github;
+    }
+
+    public Github getGithub() {
+        return github;
     }
 
     @Override

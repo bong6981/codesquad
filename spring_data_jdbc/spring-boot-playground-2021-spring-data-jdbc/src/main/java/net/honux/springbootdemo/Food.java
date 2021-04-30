@@ -8,4 +8,12 @@ public class Food {
         this.name = name;
         this.cal = cal;
     }
+
+    @Override
+    public String toString() {
+        return "Food{" +
+                "name='" + name + '\'' +
+                ", cal=" + cal +
+                '}';
+    }
 }

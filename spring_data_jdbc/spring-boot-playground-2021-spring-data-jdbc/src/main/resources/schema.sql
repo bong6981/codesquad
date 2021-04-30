@@ -11,9 +11,9 @@ CREATE TABLE user
 
 DROP TABLE IF EXISTS food;
 
-CREATE TABLE foods
+CREATE TABLE food
 (
     name VARCHAR(64),
-    cal  int
+    cal  int,
     `user` int references user(id)
 );
