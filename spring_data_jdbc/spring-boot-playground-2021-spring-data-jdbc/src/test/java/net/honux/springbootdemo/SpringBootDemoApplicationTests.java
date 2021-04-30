@@ -37,6 +37,14 @@ class SpringBootDemoApplicationTests {
 		User user = userRepository.findById(id).get();
 		assertThat(user).isNotNull();
 		logger.info("User ID {}: {}", id, user);
+
+		//지금데이터에 USER 2명만 넣어줌
+		Long id2 = 3L;
+		assertThat(userRepository.findById(id2).isPresent()).isFalse();
+
+		Iterable<User> users = userRepository.findAll();
+		assertThat(((Collection) users).size()).isEqualTo(2);
+		assertThat(userRepository.count()).isEqualTo(2);
 	}
 
 	@Test

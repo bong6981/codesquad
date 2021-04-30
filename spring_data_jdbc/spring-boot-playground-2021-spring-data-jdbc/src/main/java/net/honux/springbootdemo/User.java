@@ -15,10 +15,20 @@ public class User {
     @Embedded.Empty
     private Github github;
 
+    private Set<Food> foods = new HashSet<>();
+
     public User(String email, String name, Github github) {
         this.email = email;
         this.name = name;
         this.github = github;
+    }
+
+    public void addFood(Food food) {
+        foods.add(food);
+    }
+
+    public Set<Food> getFoods() {
+        return foods;
     }
 
     public Long getId() {
