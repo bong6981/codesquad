@@ -9,6 +9,14 @@ public class Food {
         this.cal = cal;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getCal() {
+        return cal;
+    }
+
     @Override
     public String toString() {
         return "Food{" +

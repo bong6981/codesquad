@@ -3,8 +3,7 @@ package net.honux.springbootdemo;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Embedded;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class User {
 
@@ -15,7 +14,7 @@ public class User {
     @Embedded.Empty
     private Github github;
 
-    private Set<Food> foods = new HashSet<>();
+    private Map<String, Food> foods = new HashMap<>();
 
     public User(String email, String name, Github github) {
         this.email = email;
@@ -25,12 +24,16 @@ public class User {
 
     public void addFood(Food... foods) {
         for(Food food : foods) {
-            this.foods.add(food);
+            this.foods.put(food.name, food);
         }
     }
 
-    public Set<Food> getFoods() {
-        return foods;
+    public Collection<Food> getFoods() {
+        return this.foods.values();
+    }
+
+    public Food getFood(String name) {
+        return this.foods.get(name);
     }
 
     public Long getId() {

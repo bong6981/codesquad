@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.*;
@@ -39,7 +40,7 @@ class SpringBootDemoApplicationTests {
 		logger.info("User ID {}: {}", id, user);
 		Github gh = user.getGithub();
 		assertThat(gh).isNotNull();
-		Set<Food> foods = user.getFoods();
+		Collection<Food> foods = user.getFoods();
 		assertThat(foods.size()).isPositive();
 		//지금데이터에 USER 2명만 넣어줌
 		Long id2 = 999L;
@@ -118,10 +119,18 @@ class SpringBootDemoApplicationTests {
 		logger.info("user foods {}", user.getFoods().toString());
 		user.addFood(new Food("snack", 10000), new Food("초콜렛", 5000));
 		userRepository.save(user);
-		Set<Food> foods = userRepository.findById(3L).get().getFoods();
+		Collection<Food> foods = userRepository.findById(3L).get().getFoods();
 		assertThat(foods.size()).isGreaterThanOrEqualTo(2);
 		for(Food f : foods) {
 			System.out.println(f);
 		}
+	}
+
+	@Test
+	@DisplayName("food를 이름으로 찾아본다")
+	void findFood() {
+		User user = userRepository.findById(3L).get();
+		Food food = user.getFood("abc003");
+		assertThat(food.getName()).isEqualTo("kangaroo");
 	}
 }
