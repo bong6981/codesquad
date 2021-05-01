@@ -130,7 +130,7 @@ class SpringBootDemoApplicationTests {
 	@DisplayName("food를 이름으로 찾아본다")
 	void findFood() {
 		User user = userRepository.findById(3L).get();
-		Food food = user.getFood("abc003");
+		Food food = user.getFood("kangaroo");
 		assertThat(food.getName()).isEqualTo("kangaroo");
 	}
 }

@@ -2,6 +2,7 @@ package net.honux.springbootdemo;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Embedded;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 
 import java.util.*;
 
@@ -14,6 +15,7 @@ public class User {
     @Embedded.Empty
     private Github github;
 
+    @MappedCollection(keyColumn="name")
     private Map<String, Food> foods = new HashMap<>();
 
     public User(String email, String name, Github github) {
