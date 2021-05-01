@@ -1,18 +1,17 @@
 package net.honux.springbootdemo;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.junit.jupiter.api.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
-import java.util.Map;
-import java.util.Set;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @Transactional
 @SpringBootTest
@@ -124,13 +123,5 @@ class SpringBootDemoApplicationTests {
 		for(Food f : foods) {
 			System.out.println(f);
 		}
-	}
-
-	@Test
-	@DisplayName("food를 이름으로 찾아본다")
-	void findFood() {
-		User user = userRepository.findById(3L).get();
-		Food food = user.getFood("kangaroo");
-		assertThat(food.getName()).isEqualTo("kangaroo");
 	}
 }

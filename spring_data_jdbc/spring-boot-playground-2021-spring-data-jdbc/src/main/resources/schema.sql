@@ -15,5 +15,6 @@ CREATE TABLE food
 (
     name VARCHAR(64),
     cal  int,
-    `user` int references user(id)
+    `user` int references user(id),
+    user_key int
 );
