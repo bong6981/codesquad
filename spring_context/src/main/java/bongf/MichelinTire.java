@@ -1,6 +1,6 @@
 package bongf;
 
-public class MichelinTIre implements Tire{
+public class MichelinTire implements Tire{
     @Override
     public String getBrand() {
         return "미슐랭";
