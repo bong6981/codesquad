@@ -11,5 +11,14 @@ VALUES ('flower crab', 0, 1),
 INSERT INTO `group`(`name`)
 VALUES ('game'),
        ('backend'),
-       ('frontend')
+       ('frontend');
 
+INSERT INTO project(`name`)
+VALUES ('sidedish'),
+       ('todo'),
+       ('super mario');
+
+INSERT INTO works_on(project_id, `user`, `hour`)
+VALUES (1, 1, 1),
+       (2, 1, 1),
+       (2, 2, 1);

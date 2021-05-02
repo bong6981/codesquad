@@ -25,6 +25,8 @@ public class User {
         this.github = github;
     }
 
+    private Set<WorksOn> worksOns;
+
     public void addFood(Food... foods) {
         Collections.addAll(this.foods, foods);
     }
@@ -67,5 +69,9 @@ public class User {
 
     public Long getGroupId() {
         return groupId;
+    }
+
+    public Set<WorksOn> getWorksOns() {
+        return this.worksOns;
     }
 }

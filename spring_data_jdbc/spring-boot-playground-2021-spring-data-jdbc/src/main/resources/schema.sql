@@ -28,3 +28,20 @@ CREATE TABLE `group`
     name VARCHAR(64)
 );
 
+DROP TABLE IF EXISTS project;
+CREATE TABLE project
+(
+    id   int auto_increment primary key,
+    name VARCHAR(64)
+);
+
+DROP TABLE IF EXISTS works_on;
+CREATE TABLE works_on
+(
+    id int primary key auto_increment,
+    project_id int references project (id),
+    user    int references user (id),
+    `hour`       int
+);
+
+
