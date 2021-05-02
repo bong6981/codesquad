@@ -11,10 +11,8 @@ public class Kyu {
     public static void main(String[] args) {
         logger.info("kyu hates aws");
         ApplicationContext ctx = new ClassPathXmlApplicationContext("/config.xml", Kyu.class);
-        Tire tire = ctx.getBean("tire", Tire.class);
+        Tire tire = ctx.getBean("KoreaTire", Tire.class);
         Car car = ctx.getBean("car", Car.class);
-        car.setTire(tire);
         System.out.println(car.run());
-
     }
 }

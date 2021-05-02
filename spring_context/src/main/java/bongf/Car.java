@@ -1,11 +1,10 @@
 package bongf;
 
-public class Car {
-    private Tire tire;
+import org.springframework.beans.factory.annotation.Autowired;
 
-    public void setTire(Tire tire) {
-        this.tire = tire;
-    }
+public class Car {
+    @Autowired
+    private Tire tire;
 
     public String run() {
         return tire.getBrand() + "로 쌩쌩!";
