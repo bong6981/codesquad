@@ -15,6 +15,8 @@ public class User {
     @Embedded.Empty
     private Github github;
 
+    private Long groupId;
+
     private List<Food> foods = new ArrayList<>();
 
     public User(String email, String name, Github github) {
@@ -61,5 +63,9 @@ public class User {
                 ", name='" + name + '\'' +
                 ", github=" + github +
                 '}';
+    }
+
+    public Long getGroupId() {
+        return groupId;
     }
 }
