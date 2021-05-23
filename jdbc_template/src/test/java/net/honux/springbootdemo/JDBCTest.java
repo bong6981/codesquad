@@ -21,4 +21,9 @@ public class JDBCTest {
        assertThat(repo.getConnection()).isNotNull();
     }
 
+    @Test
+    @DisplayName("User 한 명 가져오기")
+    void getUser() {
+        assertThat(repo.findById(1L).getId()).isEqualTo(1L);
+    }
 }
