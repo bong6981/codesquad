@@ -13,20 +13,22 @@ import java.sql.SQLException;
 public class MyUserRepository {
     private Logger logger = LoggerFactory.getLogger(MyUserRepository.class);
 
-    @Value("${spring.datasource.url")
+    @Value("${spring.datasource.url}")
     private String url;
-    @Value("${spring.datasource.username")
+    @Value("${spring.datasource.username}")
     private String username;
-    @Value("${spring.datasource.password")
+    @Value("${spring.datasource.password}")
     private String password;
     public Connection getConnection() {
+        Connection conn = null;
         try {
-            Connection conn = DriverManager.getConnection(url, username, password);
+            conn = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
             logger.error("MySQL Driver error: {}", e.getMessage());
+            e.printStackTrace();
             return null;
         }
         logger.debug("create connection success");
-        return null;
+        return conn;
     }
 }
