@@ -1,13 +1,12 @@
 package net.honux.springbootdemo;
 
+import org.graalvm.compiler.lir.LIRInstruction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 @Repository
 public class MyUserRepository {
@@ -30,5 +29,25 @@ public class MyUserRepository {
         }
         logger.debug("create connection success");
         return conn;
+    }
+
+    public User findById(Long id) {
+        Connection conn = getConnection();
+        String sql = "SELECT id, email FROM user where id=?";
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setLong(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            User user = new User();
+            while (resultSet.next()) {
+                user.setId(resultSet.getLong("id"));
+                user.setEmail(resultSet.getString("email"));
+
+            }
+            return user;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 }
